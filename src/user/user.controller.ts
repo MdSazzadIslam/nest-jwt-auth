@@ -24,7 +24,7 @@ export class UserController {
     return await this.userService.getUser(id);
   }
 
-  @Post()
+  @Post('login')
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
@@ -32,7 +32,7 @@ export class UserController {
     return await this.userService.login(email, password);
   }
 
-  @Post()
+  @Post('registration')
   async registration(
     @Body('firstName') firstName: string,
     @Body('lastName') lastName: string,
@@ -46,12 +46,12 @@ export class UserController {
       password,
     );
   }
-  @Patch(':id')
+  @Patch('update/:id')
   async updateUser(@Param('id') id: string) {
     return await this.userService.deleteUser(id);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   async deleteUser(@Param('id') id: string) {
     return await this.userService.deleteUser(id);
   }

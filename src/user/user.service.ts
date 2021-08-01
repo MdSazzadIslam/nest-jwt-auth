@@ -83,12 +83,15 @@ export class UserService {
     email: string,
     password: string,
   ): Promise<User> {
+    const hashPassword: string = await bcrypt.hash(password, 10);
+    console.log(hashPassword);
     const newUser = new this.userModel({
       firstName,
       lastName,
       email,
-      password,
+      password: hashPassword,
     });
+
     return await newUser.save();
   }
 
